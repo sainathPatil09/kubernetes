@@ -1,7 +1,7 @@
 # **Kubernetes Beginners Guide**
 
 
-## **what is k8s, why k8s and how k8s helps ? **
+## **what is k8s, why k8s and how k8s helps ?** 
 
 * # what is Kubernetes
     - K8s (short for Kubernetes) is an open-source container orchestration platform.
@@ -132,22 +132,50 @@
     `kubectl get pods -n my-namespace`
 
 - ## **Workloads** 
-- ### Deployments 
-    A Deployment is a Kubernetes resource that helps you manage and scale your applications  
-    self-healing, scaling, Rolling updates   
-    `kubectl apply -f deployment.yml`
+    - ### Deployments 
+        A Deployment is a Kubernetes resource that helps you manage and scale your applications  
+        self-healing, scaling, Rolling updates   
+        `kubectl apply -f deployment.yml`
 
-- ### ReplicaSets 
-    Ensure that a specified number of identical Pods are running at all times  
-    ReplicaSets are same Deployments but replicasets do not have rolling updates
+    - ### ReplicaSets 
+        Ensure that a specified number of identical Pods are running at all times  
+        ReplicaSets are same Deployments but replicasets do not have rolling updates
 
-- ### DaemonSets
-    DaemonSets are also same as replicasets only difference is that it ensure that atleat one pod is running in one node  
-    means if we have 3 worker node it enure that each node has one pod running  
+    - ### DaemonSets
+        DaemonSets are also same as replicasets only difference is that it ensure that atleat one pod is running in one node  
+        means if we have 3 worker node it enure that each node has one pod running  
 
-- ### StatefulSets
-    StatefulSet is a tool in Kubernetes that helps you manage stateful applications (apps that need persistent storage and unique identities for each Pod).  
-    It ensures that even if Pods crash or get restarted, they will still have their data and stable names.
+    - ### StatefulSets
+        StatefulSet is a tool in Kubernetes that helps you manage stateful applications (apps that need persistent storage and unique identities for each Pod).  
+        It ensures that even if Pods crash or get restarted, they will still have their data and stable names.
 
 
-## **Namespace, Pods, Workloads**
+## **Services, ConfigMaps, Secrets**
+
+- ## **Services**
+    Pods can come and go (because of scaling, updates, crashes), and every time a Pod restarts, its IP address can change.  
+    Kubernetes Service gives a stable way to talk to your Pods, no matter how many times they restart or move!  
+    **Types of Services**
+    - NodePort
+    - ClusterIP
+    - LoadBalancer
+    - ExternalName 
+
+- ## **ConfigMaps**
+    Used to store non-sensetive configuration data (like: Database URL, API keys, Environment modes) separately from application code  
+    keeps configuration separate  
+    easier to update  
+
+- ## **Secrets**
+    What about sensetive data ( like: passwords, Database credentials, Tokens ),  Protects your important private information  
+    Automatically encoded (base64) — not easily readable at first glance.
+    
+## **Persistent Volumes (PV) and Persistent Volume Claims (PVC)**
+- ## **Persistent Volumes (PV)**
+    PV is like a physical storage space.  
+    Kubernetes admins create PVs.  
+    Can be anything: Disk, NFS, Cloud Storage, etc.
+- ## **Persistent Volume Claims (PVC)**
+    PVC is like a request for storage.  
+    Pods make a PVC saying: "I need storage of 5GB."  
+    Kubernetes matches PVC with a suitable PV.  
